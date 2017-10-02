@@ -79,13 +79,14 @@ gets sent to the nodedeploy-server, which creates credentials and other default 
 ### Project Creation
 
 ```bash
-./bin/nodedeploy create --id [project-id] --remote [remote-uri]
+./bin/nodedeploy create --id [project-id] --remote [remote-uri] --branch [git-branch]
 ```
 
-`[project-id]`: An identifier for your project, cannot have spaces, or a few other special characters (which you will find out as you try it out).
-`[remote-uri]`: A remote Git repo SSH URL, used to download the project on the remote nodedeploy-server.
+* `[--id/-i]`: An identifier for your project, cannot have spaces, or a few other special characters (which you will find out as you try it out).
+* `[--remote/-r]`: A remote Git repo SSH URL, used to download the project on the remote nodedeploy-server.
+* `[--branch/-b]`: (*Optional*) Changes the branch that's cloned to the server.
 
-This will clone the project onto the remote nodedeploy-server.
+This will clone the project onto the remote server.
 
 ---
 
@@ -102,13 +103,14 @@ This will retrieve a simple list of project IDs that exist on the nodedeploy-ser
 ### Project Updating
 
 ```bash
-./bin/nodedeploy update [project-id] [commit-msg]
+./bin/nodedeploy update [project-id] --message [commit-msg] --branch [git-branch]
 ```
 
-`[project-id]`: The identifier of the project to update.
-`[commit-msg]`: The commit message used to commit local changes to Git before contacting the nodedeploy-server.
+* `[project-id]`: The identifier of the project to update.
+* `[--message/-m]`: The commit message used to commit local changes to Git before contacting the server.
+* `[--branch/-b]`: (*Optional*) The branch that is used to pull changes on the remote server. Defaults to master.
 
-This will commit and push updates to Git, then pull them into the project on the remote nodedeploy-server.
+This will commit and push local changes to Git, then pull them into the project on the remote server.
 
 ---
 
@@ -118,7 +120,7 @@ This will commit and push updates to Git, then pull them into the project on the
 ./bin/nodedeploy start [project-id]
 ```
 
-`[project-id]`: The identifier of the project to start.
+* `[project-id]`: The identifier of the project to start.
 
 This will execute the runner (`./bin/nodedeploy-server` or `app.js`) on the remote nodedeploy-server for this project. Output 
 will be logged into the project directory. 
@@ -128,10 +130,12 @@ will be logged into the project directory.
 ### Project Deploying
 
 ```bash
-./bin/nodedeploy deploy [project-id]
+./bin/nodedeploy deploy [project-id] --message [commit-msg] --branch [git-branch]
 ```
 
-`[project-id]`: The identifier of the project to deploy.
+* `[project-id]`: The identifier of the project to deploy.
+* `[--message/-m]`: The commit message used to commit local changes to Git before contacting the server.
+* `[--branch/-b]`: (*Optional*) The branch that is used to pull changes on the remote server. Defaults to master.
 
 This is a combination of update and start; changes will be pulled and it will be executed.
 
@@ -143,7 +147,7 @@ This is a combination of update and start; changes will be pulled and it will be
 ./bin/nodedeploy stop [project-id]
 ```
 
-`[project-id]`: The identifier of the project to stop.
+* `[project-id]`: The identifier of the project to stop.
 
 This will kill a started instance of the project.
 
@@ -155,6 +159,6 @@ This will kill a started instance of the project.
 ./bin/nodedeploy destroy [project-id]
 ```
 
-`[project-id]`: The identifier of the project to destroy.
+* `[project-id]`: The identifier of the project to destroy.
 
 This will destroy (delete) the project folder on the remote nodedeploy-server.
