@@ -28,27 +28,19 @@ should be within project folders while you use it.
 
 # Server Usage
 
-### Configuration
-
-If you want to change the port the nodedeploy-server listens on, you can either change the `NODE_DEPLOY_PORT` 
-environment variable, or modify `/bin/nodedeploy-server`. The default port is `3333`.
-
----
-
-### Running the Server
-
 `cd` into the project directory, and run:
 
 ```bash
-./bin/nodedeploy-server
+nodedeploy-server [port]
 ```
 
-This will start the HTTP nodedeploy-server.
+This will start the HTTP server that receives client connections. You can specify an optional listen 
+port as an argument; this defaults to `3333`.
 
 If you get a permission denied error, you need to add executable permission first:
 
 ```bash
-chmod +x ./bin/nodedeploy-server
+chmod +x nodedeploy-server
 ```
 
 Then try again.
@@ -57,10 +49,10 @@ Then try again.
 
 # Client Usage
 
-To see the help menu, run the nodedeploy without any parameters:
+To see the help menu, run `nodedeploy` without any parameters or pass the `--help` argument.
 
 ```bash
-./bin/nodedeploy
+nodedeploy --help
 ```
 
 ---
@@ -68,7 +60,7 @@ To see the help menu, run the nodedeploy without any parameters:
 ### Remote Setup
 
 ```bash
-./bin/nodedeploy setup
+nodedeploy setup
 ```
 
 This will start the menu flow, which will prompt for everything it needs from you. Your input 
@@ -79,7 +71,7 @@ gets sent to the nodedeploy-server, which creates credentials and other default 
 ### Project Creation
 
 ```bash
-./bin/nodedeploy create --id [project-id] --remote [remote-uri] --branch [git-branch]
+nodedeploy create --id [project-id] --remote [remote-uri] --branch [git-branch]
 ```
 
 * `[--id/-i]`: An identifier for your project, cannot have spaces, or a few other special characters (which you will find out as you try it out).
@@ -93,7 +85,7 @@ This will clone the project onto the remote server.
 ### Project Listing
 
 ```bash
-./bin/nodedeploy list
+nodedeploy list
 ```
 
 This will retrieve a simple list of project IDs that exist on the nodedeploy-server.
@@ -103,7 +95,7 @@ This will retrieve a simple list of project IDs that exist on the nodedeploy-ser
 ### Project Updating
 
 ```bash
-./bin/nodedeploy update [project-id] --message [commit-msg] --branch [git-branch]
+nodedeploy update [project-id] --message [commit-msg] --branch [git-branch]
 ```
 
 * `[project-id]`: The identifier of the project to update.
@@ -117,12 +109,12 @@ This will commit and push local changes to Git, then pull them into the project 
 ### Project Starting
 
 ```bash
-./bin/nodedeploy start [project-id]
+nodedeploy start [project-id]
 ```
 
 * `[project-id]`: The identifier of the project to start.
 
-This will execute the runner (`./bin/nodedeploy-server` or `app.js`) on the remote nodedeploy-server for this project. Output 
+This will execute the runner (`nodedeploy-server` or `app.js`) on the remote nodedeploy-server for this project. Output 
 will be logged into the project directory. 
 
 ---
@@ -130,7 +122,7 @@ will be logged into the project directory.
 ### Project Deploying
 
 ```bash
-./bin/nodedeploy deploy [project-id] --message [commit-msg] --branch [git-branch]
+nodedeploy deploy [project-id] --message [commit-msg] --branch [git-branch]
 ```
 
 * `[project-id]`: The identifier of the project to deploy.
@@ -144,7 +136,7 @@ This is a combination of update and start; changes will be pulled and it will be
 ### Project Stopping
 
 ```bash
-./bin/nodedeploy stop [project-id]
+nodedeploy stop [project-id]
 ```
 
 * `[project-id]`: The identifier of the project to stop.
@@ -156,7 +148,7 @@ This will kill a started instance of the project.
 ### Project Destruction
 
 ```bash
-./bin/nodedeploy destroy [project-id]
+nodedeploy destroy [project-id]
 ```
 
 * `[project-id]`: The identifier of the project to destroy.

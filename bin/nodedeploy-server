@@ -9,7 +9,7 @@ const http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-let port = normalizePort(process.env.NODE_DEPLOY_PORT || '3333');
+let port = normalizePort(process.argv[2] || '3333');
 app.set('port', port);
 
 /**
