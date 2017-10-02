@@ -1,7 +1,7 @@
 # Node Deploy
 
 Node Deploy is a app deployment solution that allows you to easily update and execute remote Node.js 
-applications on your nodedeploy-server using a CLI.
+applications on your remote server using a CLI.
 
 ---
 
@@ -64,7 +64,7 @@ nodedeploy setup
 ```
 
 This will start the menu flow, which will prompt for everything it needs from you. Your input 
-gets sent to the nodedeploy-server, which creates credentials and other default settings.
+gets sent to the server, which creates credentials and other default settings.
 
 ---
 
@@ -75,7 +75,7 @@ nodedeploy create --id [project-id] --remote [remote-uri] --branch [git-branch]
 ```
 
 * `[--id/-i]`: An identifier for your project, cannot have spaces, or a few other special characters (which you will find out as you try it out).
-* `[--remote/-r]`: A remote Git repo SSH URL, used to download the project on the remote nodedeploy-server.
+* `[--remote/-r]`: A remote Git repo SSH URL, used to download the project on the remote server.
 * `[--branch/-b]`: (*Optional*) Changes the branch that's cloned to the server.
 
 This will clone the project onto the remote server.
@@ -88,7 +88,7 @@ This will clone the project onto the remote server.
 nodedeploy list
 ```
 
-This will retrieve a simple list of project IDs that exist on the nodedeploy-server.
+This will retrieve a simple list of project IDs that exist on the server.
 
 ---
 
@@ -114,7 +114,7 @@ nodedeploy start [project-id]
 
 * `[project-id]`: The identifier of the project to start.
 
-This will execute the runner (`nodedeploy-server` or `app.js`) on the remote nodedeploy-server for this project. Output 
+This will execute the runner (`nodedeploy-server` or `app.js`) on the remote server for this project. Output 
 will be logged into the project directory. 
 
 ---
@@ -153,4 +153,4 @@ nodedeploy destroy [project-id]
 
 * `[project-id]`: The identifier of the project to destroy.
 
-This will destroy (delete) the project folder on the remote nodedeploy-server.
+This will destroy (delete) the project folder on the remote server.
