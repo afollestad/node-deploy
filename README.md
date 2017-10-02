@@ -16,7 +16,13 @@ For Linux distributions, follow [these simple instructions](https://nodejs.org/e
 npm install
 ```
 
-This will install all dependencies for the nodedeploy and nodedeploy-server.
+This will install all dependencies for client and server.
+
+### Installation
+
+You should add `/bin/nodedeploy` and `/bin/nodedeploy-server` to your `PATH` so you can use them 
+anywhere without having to reference the whole path. Node Deploy will interact with Git so you 
+should be within project folders while you use it.
 
 ---
 
