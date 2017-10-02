@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+async function link(target, path) {
+  return new Promise((resolve, reject) => {
+    fs.symlink(target, path, function (err) {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve();
+    });
+  });
+}
+
+const clientSrc = `${__dirname}${path.sep}client`;
+const serverSrc = `${__dirname}${path.sep}www`;
+const executablesFolder = '/usr/bin';
+
+link(clientSrc, `${executablesFolder}${path.sep}nodedeploy`)
+.then(() => {
+  return link(serverSrc, `${executablesFolder}${path.sep}nodedeploy-server`);
+})
+.then(() => {
+  console.log('Done');
+})
+.catch(err => {
+  console.log(err);
+});

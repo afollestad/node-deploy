@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const packageJson = require('../package.json');
+
+program.version(packageJson.version);
+
+require('../client/setup')(program);
+require('../client/createProject')(program);
+require('../client/listProjects')(program);
+
+const updateProject = require('../client/updateProject');
+updateProject.attach(program);
+const startProject = require('../client/startProject');
+startProject.attach(program);
+
+program.command('deploy [id]')
+.description(
+    'A combination of the update and start commands. Pulls changes and executes.')
+.option("-b, --branch [remote-branch]",
+    "The Git branch pull changes from, defaults to master.")
+.option("-m, --message [commit-message]",
+    "The message used to commit changes to Git.")
+.action((id, options) => {
+  updateProject.performer(id, options.message, options.branch, true)
+  .then(() => {
+    return startProject.performer(id, true);
+  })
+  .catch(err => {
+    if (err.message) {
+      console.log(err.message);
+    } else {
+      console.log(err);
+    }
+  })
+});
+
+require('../client/stopProject')(program);
+require('../client/destroyProject')(program);
+
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+}
+
+program.parse(process.argv);

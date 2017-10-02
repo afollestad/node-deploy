@@ -1,0 +1,26 @@
+{
+  "name": "node-deploy",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "app-root-path": "^2.0.1",
+    "body-parser": "~1.17.1",
+    "child_process": "^1.0.2",
+    "commander": "^2.11.0",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "express-rate-limit": "^2.9.0",
+    "jsonfile": "^4.0.0",
+    "moment": "^2.18.1",
+    "morgan": "~1.8.1",
+    "prompt": "*",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
+    "simple-git": "^1.77.0",
+    "uuid": "^3.1.0",
+    "colors": "*"
+  }
+}
