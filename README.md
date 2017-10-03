@@ -63,8 +63,16 @@ nodedeploy --help
 nodedeploy setup
 ```
 
-This will start the menu flow, which will prompt for everything it needs from you. Your input 
-gets sent to the server, which creates credentials and other default settings.
+This will start the menu flow, which will prompt for everything it needs from you:
+
+* `host`: The IP address or host name of the server running Node Deploy.
+* `port`: The port in which the server is listening on.
+* `username`: The username which should be used for login.
+* `password`: The password which should be used for login.
+* `projects folder`: The folder on the server that projects should be saved in. Defaults to the remote home directory.
+* `token lifespan`: The lifespan in minutes of authentication tokens, defaults to 60 minutes (an hour).   
+
+This process can only be done once, unless you delete the `settings.json` file from the server later.
 
 ---
 
