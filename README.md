@@ -69,8 +69,10 @@ This will start the menu flow, which will prompt for everything it needs from yo
 * `port`: The port in which the server is listening on.
 * `username`: The username which should be used for login.
 * `password`: The password which should be used for login.
-* `projects folder`: The folder on the server that projects should be saved in. Defaults to the remote home directory.
-* `token lifespan`: The lifespan in minutes of authentication tokens, defaults to 60 minutes (an hour).   
+* `projects folder`: The folder on the server that projects should be 
+saved in. Defaults to the remote home directory.
+* `token lifespan`: The lifespan in minutes of authentication tokens, 
+defaults to 60 minutes (an hour). This is how often you will have to re-enter your username and password.   
 
 This process can only be done once, unless you delete the `settings.json` file from the server later.
 
@@ -82,7 +84,8 @@ This process can only be done once, unless you delete the `settings.json` file f
 nodedeploy create --id [project-id] --remote [remote-uri] --branch [git-branch]
 ```
 
-* `[--id/-i]`: An identifier for your project, cannot have spaces, or a few other special characters (which you will find out as you try it out).
+* `[--id/-i]`: An identifier for your project, cannot have spaces, or a few other special 
+characters (which you will find out as you try it out).
 * `[--remote/-r]`: A remote Git repo SSH URL, used to download the project on the remote server.
 * `[--branch/-b]`: (*Optional*) Changes the branch that's cloned to the server.
 
